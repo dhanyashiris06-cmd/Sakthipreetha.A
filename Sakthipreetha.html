@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakthi Preetha A · academic blog + resources</title>
+    <!-- light theme, clean, embedded files as attachments -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: #f2f6fc;
+            color: #1b2b40;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 10, 30, 0.08);
+            border: 1px solid #dde9f5;
+            overflow: hidden;
+        }
+
+        .header {
+            padding: 2.5rem 2.5rem 1.5rem 2.5rem;
+            background: white;
+            border-bottom: 1px solid #e2ecf7;
+        }
+
+        .name {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0b304e;
+            line-height: 1.2;
+        }
+
+        .subhead {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem 2.5rem;
+            font-size: 1.1rem;
+            color: #2c4f70;
+            margin-top: 0.7rem;
+        }
+
+        .subhead span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            background: #eaf1f9;
+            padding: 0.5rem 2.5rem 0 2.5rem;
+            gap: 0.3rem;
+            border-bottom: 1px solid #cbdae9;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 0.9rem 1.8rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #1f486b;
+            border-radius: 2rem 2rem 0 0;
+            cursor: pointer;
+            transition: 0.15s;
+            margin-bottom: -1px;
+            border: 1px solid transparent;
+            border-bottom: none;
+        }
+
+        .tab-btn:hover {
+            background: #deeaf9;
+            color: #0a344f;
+        }
+
+        .tab-btn.active {
+            background: white;
+            border-color: #bfd5ed #bfd5ed white;
+            color: #0a3b5c;
+            font-weight: 600;
+        }
+
+        .content-pane {
+            padding: 2.5rem;
+            background: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fade 0.25s;
+        }
+
+        .tab-content.active-content {
+            display: block;
+        }
+
+        @keyframes fade { 0% { opacity: 0.3; } 100% { opacity: 1; } }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 500;
+            color: #103a5c;
+            border-left: 8px solid #8fb4da;
+            padding-left: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #1d4e72;
+            margin: 2rem 0 1.2rem 0;
+        }
+
+        .grid-list {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+        }
+
+        .edu-item {
+            background: #f5faff;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid #d7e5f5;
+        }
+
+        .edu-item strong {
+            font-size: 1.2rem;
+            color: #0f3f5e;
+            display: block;
+        }
+
+        .badge {
+            background: #e2edfc;
+            color: #1c5075;
+            padding: 0.25rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin: 0.2rem 0.25rem;
+            border: 1px solid #c1d7f0;
+        }
+
+        .publication, .conf-item {
+            background: #f8fcff;
+            border-left: 4px solid #aac6e4;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 0 1.5rem 1.5rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .pub-title {
+            font-weight: 600;
+            color: #103f61;
+        }
+
+        /* attached documents style */
+        .doc-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .doc-card {
+            background: #f3f9ff;
+            border: 1px solid #c9def2;
+            border-radius: 2rem;
+            padding: 1.2rem 2rem 1.2rem 1.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 30, 60, 0.04);
+            transition: 0.1s;
+            text-decoration: none;
+            color: #103a5c;
+            font-weight: 500;
+        }
+
+        .doc-card:hover {
+            background: #e5f0fd;
+            border-color: #8fb7e0;
+            transform: scale(1.01);
+        }
+
+        .doc-icon {
+            font-size: 2.2rem;
+            line-height: 1;
+        }
+
+        .doc-name {
+            font-size: 1.1rem;
+        }
+
+        .doc-meta {
+            font-size: 0.9rem;
+            color: #35648b;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px dashed #c6dbef;
+            margin: 2rem 0;
+        }
+
+        .workshop-item {
+            background: #f5f9ff;
+            border-radius: 1.2rem;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #d3e3f6;
+        }
+
+        footer {
+            background: #e9f2fc;
+            padding: 1.5rem 2.5rem;
+            text-align: center;
+            color: #1f4b73;
+            border-top: 1px solid #c9d9ec;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="name">SAKTHI PREETHA A</div>
+        <div class="subhead">
+            <span>📧 sakthipreetha.gct@gmail.com</span>
+            <span>📞 8098599066</span>
+            <span>🧠 Associate Member · TN Psychological Association</span>
+        </div>
+    </div>
+
+    <div class="tabs" id="tabContainer">
+        <button class="tab-btn active" data-tab="academic">Academic Excellence</button>
+        <button class="tab-btn" data-tab="research">Research & Publications</button>
+        <button class="tab-btn" data-tab="counselling">Counselling & Wellness</button>
+        <button class="tab-btn" data-tab="engineering">Engineering & Innovation</button>
+    </div>
+
+    <div class="content-pane">
+        <!-- ACADEMIC EXCELLENCE -->
+        <div id="academic" class="tab-content active-content">
+            <h2>📖 Academic Excellence</h2>
+            <p style="font-size:1.2rem; background:#f1f9ff; padding:1rem 2rem; border-radius:60px;">Assistant Professor (ECE) · counsellor · researcher</p>
+            <div style="background:#f4faff; border-radius:2rem; padding:1.8rem; margin-bottom:2rem;">
+                <p style="font-size:1.1rem;">"To work in a challenging environment that provides opportunity to learn key technology areas, and to be an asset for the organization by delivering to the best of my capabilities."</p>
+            </div>
+            <h3>🎓 Educational qualifications</h3>
+            <div class="grid-list">
+                <div class="edu-item"><strong>Ph.D. (Engg - Pursuing)</strong> CGPA 9.75 · Velammal CET</div>
+                <div class="edu-item"><strong>M.Sc. Psychology</strong> CGPA 7.92 (2018-20) · TNOU Chennai</div>
+                <div class="edu-item"><strong>PG Diploma Psychological Counselling</strong> 2021 · Athilah School</div>
+                <div class="edu-item"><strong>M.E. Wireless Technologies</strong> CGPA 9.54 (2012-14) · TCE Madurai</div>
+                <div class="edu-item"><strong>B.E. ECE</strong> CGPA 8.32 (2008-12) · GCT Coimbatore</div>
+                <div class="edu-item"><strong>HSC 96% · SSLC 96.6%</strong> SBK Girls School, district first rank</div>
+            </div>
+            <h3>🌟 achievements & leadership</h3>
+            <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+                <span class="badge">🏆 University FIRST RANK (M.Sc. Psychology)</span>
+                <span class="badge">🥇 FIRST RANK M.E. Wireless Technologies</span>
+                <span class="badge">📌 Placement In-Charge · Alumni Cell</span>
+                <span class="badge">🧑‍🏫 Overall Counsellor, VCET</span>
+            </div>
+        </div>
+
+        <!-- RESEARCH & PUBLICATIONS (with attached documents) -->
+        <div id="research" class="tab-content">
+            <h2>📄 Research & Publications</h2>
+
+            <!-- === ATTACHED DOCUMENTS (clickable) === -->
+            <div class="doc-grid">
+                <!-- LIC UNIT-5 .pdf (from the provided content) -->
+                <a href="#" class="doc-card" onclick="window.open('data:application/pdf;base64,JVBERi0...', '_blank'); alert('Demo: PDF file (LIC UNIT-5) would open. In actual deployment, serve real file.'); return false;">
+                    <span class="doc-icon">📘</span>
+                    <span>
+                        <span class="doc-name">LIC UNIT-5 (Power circuits) </span><br>
+                        <span class="doc-meta">PDF · textbook chapter</span>
+                    </span>
+                </a>
+
+                <!-- INTERRUPTS.pptx (simulated .pptx) -->
+                <a href="#" class="doc-card" onclick="alert('INTERRUPTS.pptx – 8051 interrupts presentation (demo).'); return false;">
+                    <span class="doc-icon">🖥️</span>
+                    <span>
+                        <span class="doc-name">INTERRUPTS.pptx </span><br>
+                        <span class="doc-meta">PPTX · 8051 interrupts</span>
+                    </span>
+                </a>
+
+                <!-- Serial communication interface (8251).pptx -->
+                <a href="#" class="doc-card" onclick="alert('Serial communication interface (8251).pptx – USART, 8251 details (demo).'); return false;">
+                    <span class="doc-icon">🔌</span>
+                    <span>
+                        <span class="doc-name">Serial communication 8251.pptx </span><br>
+                        <span class="doc-meta">PPTX · 8251 USART</span>
+                    </span>
+                </a>
+
+                <!-- instruction set-MPMC.pptx -->
+                <a href="#" class="doc-card" onclick="alert('instruction set-MPMC.pptx – 8051 instruction set (demo).'); return false;">
+                    <span class="doc-icon">⚙️</span>
+                    <span>
+                        <span class="doc-name">instruction set-MPMC.pptx </span><br>
+                        <span class="doc-meta">PPTX · 8051 instructions</span>
+                    </span>
+                </a>
+            </div>
+
+            <h3>📘 Peer-reviewed journals</h3>
+            <div class="publication"><span class="pub-title">Revolutionizing healthcare with meta material-enhanced antennas</span> – Frequenz, De Gruyter, 2024</div>
+            <div class="publication"><span class="pub-title">Application of AODV protocol with optimized Anycast routing for healthcare networks</span> – IJAER 2015</div>
+            <div class="publication"><span class="pub-title">Energy Aware Trust-based System for Mobile Healthcare</span> – IJARECE 2014</div>
+            <div class="publication"><span class="pub-title">A Reliable Data Transmission Protocol for Healthcare networks using Wi-Fi</span> – IJARECE 2014</div>
+
+            <h3>🎤 Conference papers (selected)</h3>
+            <div class="conf-item">Portable Multi Sensor Device for Real-Time Detection of Foodborne Pathogens – IEEE ICTTIIT'25 Feb 2025</div>
+            <div class="conf-item">Innovative Metasurface-Assisted Star-Coupled Microstrip Antenna Array – IEEE-STCR-2025</div>
+            <div class="conf-item">A Novel Metasurface-Embedded Antenna for WBAN Communications – 3rd IEEE ICAECA 2025</div>
+            <div class="conf-item">Prosthetic Hand Arm using Flex sensors and Servo Motors – Green Revolution, VIT Mar 2025</div>
+            <div class="conf-item">Investigating Exponential Gamma-Gamma Turbulence on Underwater OWC – VCET 2024</div>
+
+            <h3>🔬 Workshops & FDPs attended (engineering)</h3>
+            <ul style="columns:2 240px;">
+                <li>• 6‑day IEEE CAS FDP on Semiconductor Devices, Sai Ram</li>
+                <li>• 5‑day FDP "AI Tools in Education", Bala VV Academy</li>
+                <li>• 2‑day FDP "Frequency Selective Surfaces", TCE</li>
+                <li>• 6‑day ATAL‑FDP on Reconfigurable Intelligent Surfaces (6G), NIT Trichy</li>
+                <li>• FDP on Antenna Concepts, SSN Chennai (2024)</li>
+                <li>• STC on Antenna Design Tools, NITTTR Chandigarh (2023)</li>
+            </ul>
+
+            <hr>
+            <p style="font-style:italic; color:#2f4f76;">📎 Click any document icon above to open (simulated). Replace with real file paths in production.</p>
+        </div>
+
+        <!-- COUNSELLING & WELLNESS -->
+        <div id="counselling" class="tab-content">
+            <h2>🧘 Counselling & Wellness</h2>
+            <div style="background:#f4f9ff; border-radius:2rem; padding:1.5rem; margin-bottom:2rem;">
+                <span class="badge">Freelancer psychologist · TN Psychological Association</span>
+                <span class="badge">Overall counsellor VCET</span>
+            </div>
+            <h3>🧠 psychology internships & workshops</h3>
+            <div class="workshop-item"><strong>🌼 Yellow Pond Online Internship – May 2025</strong> (30h intensive) – CBT, DBT, ACT, SFBT, Narrative Therapy, Psychodynamic Therapy.</div>
+            <div class="workshop-item"><strong>🧩 CBT & Techniques workshop</strong> – Yellow Pond Counselling, July 18–24, 2025</div>
+            <h3>📜 psychology certifications</h3>
+            <div class="grid-list">
+                <div class="edu-item"><strong>IIT Madras Pravartak</strong> – Career Counselling Certification, Grade "A"</div>
+                <div class="edu-item"><strong>PG Diploma in Psychological Counselling</strong> (2021) Athilah School</div>
+            </div>
+        </div>
+
+        <!-- ENGINEERING & INNOVATION -->
+        <div id="engineering" class="tab-content">
+            <h2>⚙️ Engineering & Innovation</h2>
+            <h3>📌 featured projects</h3>
+            <div class="grid-list">
+                <div class="edu-item"><strong>Portable Multi‑Sensor for food pathogen detection</strong> – IEEE ICTTIIT'25</div>
+                <div class="edu-item"><strong>Metasurface‑embedded antenna for WBAN</strong> – 3rd IEEE ICAECA 2025</div>
+                <div class="edu-item"><strong>Prosthetic hand using flex sensors & servo motors</strong> – VIT 2025</div>
+                <div class="edu-item"><strong>Metamaterial antenna design with ANN/PSO for EV</strong> – SSN College 2025</div>
+                <div class="edu-item"><strong>Star‑coupled microstrip antenna array</strong> – IEEE‑STCR 2025</div>
+            </div>
+            <h3 style="margin-top:2rem;">📜 certifications (engineering)</h3>
+            <ul style="display:flex; flex-wrap:wrap; gap:0.8rem;">
+                <li class="badge">🎓 NPTEL "Introduction to IoT" – Elite+Silver</li>
+                <li class="badge">📡 IIT Madras Pravartak – Career Counselling</li>
+                <li class="badge">📶 6G reconfigurable surfaces – NIT Trichy</li>
+                <li class="badge">🤖 AI Tools in Education – Bala VV</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        ✦ SAKTHI PREETHA A · Assistant Professor (ECE) · counsellor · researcher ✦<br>
+        <span style="opacity:0.7;">“to be an asset for the organization by delivering to the best of my capabilities”</span>
+    </footer>
+</div>
+
+<!-- simple tab switching -->
+<script>
+    (function() {
+        const tabs = document.querySelectorAll('.tab-btn');
+        const contents = {
+            academic: document.getElementById('academic'),
+            research: document.getElementById('research'),
+            counselling: document.getElementById('counselling'),
+            engineering: document.getElementById('engineering')
+        };
+
+        function activateTab(tabId) {
+            tabs.forEach(btn => btn.classList.remove('active'));
+            Object.values(contents).forEach(c => c.classList.remove('active-content'));
+            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            if (contents[tabId]) contents[tabId].classList.add('active-content');
+        }
+
+        tabs.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const tabId = btn.getAttribute('data-tab');
+                if (tabId) activateTab(tabId);
+            });
+        });
+
+        // initial: academic open
+        activateTab('academic');
+    })();
+</script>
+
+<!-- note: actual file data would be served from server; here we use placeholder alerts. 
+     For real deployment replace onclick with proper file links.  -->
+</body>
+</html>
